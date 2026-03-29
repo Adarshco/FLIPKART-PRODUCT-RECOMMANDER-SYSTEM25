@@ -1,0 +1,16 @@
+langchain-astradb
+langchain-groq
+datasets
+pypdf
+python-dotenv
+pandas
+flask
+prometheus_client
+langchain==0.3.25
+langchain-core==0.3.66
+langchain-community==0.3.25
+langchain-openai==0.3.25
+langchain-google-genai==2.0.10
+langchain-huggingface==0.3.0
+langchain-text-splitters==0.3.8
+
