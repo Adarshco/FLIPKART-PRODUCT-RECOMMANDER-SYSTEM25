@@ -1,27 +1,11 @@
-## Parent image
-FROM python:3.10-slim
+FROM python:3.10-slim-buster
 
-## Essential environment variables
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
-
-## Work directory inside the docker container
 WORKDIR /app
+COPY . /app
+  
+RUN apt update -y && apt install awscli -y
 
-## Installing system dependancies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6 unzip -y && pip install -r requirements.txt
 
-## Copying ur all contents from local to app
-COPY . .
 
-## Run setup.py
-RUN pip install --no-cache-dir -e .
-
-# Used PORTS
-EXPOSE 5000
-
-# Run the app 
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]
